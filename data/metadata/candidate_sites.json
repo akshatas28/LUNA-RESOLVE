@@ -1,0 +1,61 @@
+
+{
+  "active_site": "CONNECTING_RIDGE_R01",
+  "sites": {
+    "NOBILE_RIM_1_R06": {
+      "site_id": "NOBILE_RIM_1_R06",
+      "site_name": "Nobile Rim 1",
+      "site_type": "Artemis III candidate region",
+      "coordinate_role": "representative_region_reference_point",
+      "latitude_deg": -85.4381,
+      "longitude_deg": 37.36667,
+      "analysis_reference_frame": "MOON_ME",
+      "analysis_ephemeris": "DE440",
+      "coordinate_source": {
+        "publisher": "NASA",
+        "document": "Lunar Surface Data Book",
+        "document_number": "NASA/TP-20250002845",
+        "appendix": "A",
+        "table": "A2.1-1",
+        "page": 75,
+        "source_dataset": "South Pole LOLA DEM",
+        "source_reference_frame": "MOON_ME",
+        "source_ephemeris": "DE421",
+        "source_coordinate_projection": "South polar stereographic"
+      },
+      "coordinate_accuracy_m": {
+        "value": 5,
+        "upper_estimate": 10,
+        "applies_to": "original polygon centre"
+      },
+      "elevation_m": null,
+      "elevation_source": null,
+      "status": "reference_coordinate_pending_independent_verification"
+    },
+    "CONNECTING_RIDGE_R01": {
+      "site_id": "CONNECTING_RIDGE_R01",
+      "site_name": "Connecting Ridge",
+      "site_type": "Artemis III candidate region",
+      "coordinate_role": "representative_region_reference_point",
+      "latitude_deg": -89.4632,
+      "longitude_deg": -137.49,
+      "analysis_reference_frame": "MOON_ME",
+      "analysis_ephemeris": "DE440",
+      "coordinate_source": {
+        "publisher": "NASA",
+        "document": "Lunar Surface Data Book",
+        "document_number": "NASA/TP-20250002845",
+        "appendix": "A",
+        "table": "A2.1-2",
+        "page": 75,
+        "source_dataset": "South Pole LOLA DEM",
+        "source_reference_frame": "MOON_ME",
+        "source_ephemeris": "DE421"
+      },
+      "coordinate_accuracy_m": null,
+      "elevation_m": 1944.772,
+      "elevation_source": "Site01_final_adj_5mpp_surf.tif, bilinear interpolation",
+      "status": "projected_inside_dem_source_frame_verification_pending"
+    }
+  }
+}

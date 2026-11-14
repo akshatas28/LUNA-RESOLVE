@@ -1,0 +1,5 @@
+site,visibility_type,window_count,longest_window_minutes,longest_window_start_utc,longest_window_end_utc,total_visible_minutes
+Nobile Rim 1,Solar visibility,3,9390.0,2026-11-14T00:00:00.000,2026-11-20T12:00:00.000,13950.0
+Nobile Rim 1,Earth disk visibility,1,13650.0,2026-11-18T11:00:00.000,2026-11-27T22:00:00.000,13650.0
+Connecting Ridge,Solar visibility,2,10740.0,2026-11-14T00:00:00.000,2026-11-21T10:30:00.000,20910.0
+Connecting Ridge,Earth disk visibility,1,9900.0,2026-11-20T15:00:00.000,2026-11-27T11:30:00.000,9900.0
