@@ -1,379 +1,198 @@
-\# LUNA-RESOLVE
+# LUNA-RESOLVE
 
-
-
-\*\*Lunar South Pole Mission Environment Analysis\*\*
-
-
+**Lunar South Pole Mission Environment Analysis**
 
 LUNA-RESOLVE is a terrain-aware analysis platform for evaluating solar illumination and geometric Earth visibility at candidate lunar south-pole exploration sites. It combines NASA lunar elevation data with SPICE-based celestial geometry to examine how local terrain and observer height affect the mission environment over a 30-day observation window.
 
+The project currently analyzes two candidate locations: **Nobile Rim 1** and **Connecting Ridge**.
 
-
-The project currently analyzes two candidate locations: \*\*Nobile Rim 1\*\* and \*\*Connecting Ridge\*\*.
-
-
-
-\## The Problem
-
-
+## The Problem
 
 Lunar south-pole terrain creates complex illumination and visibility conditions. Nearby ridges and crater walls can obstruct the Sun or Earth even when the celestial body is geometrically above the local horizontal plane.
 
-
-
 Mission planning therefore needs more than a simple latitude-longitude or daylight estimate. It needs to account for local terrain, observation geometry, and changes over time.
 
+## What LUNA-RESOLVE Does
 
+- Calculates solar elevation and azimuth using SPICE-based geometry.
+- Derives terrain horizon profiles from NASA Lunar Orbiter Laser Altimeter (LOLA) elevation data.
+- Classifies solar visibility by comparing solar geometry with the local terrain horizon.
+- Estimates geometric Earth-disk visibility, including fully visible, partially visible, and not-visible states.
+- Examines how different observer heights affect terrain-limited solar visibility.
+- Compares candidate sites using time-series data and visibility windows.
+- Presents the results through an interactive dashboard.
 
-\## What LUNA-RESOLVE Does
-
-
-
-\- Calculates solar elevation and azimuth using SPICE-based geometry.
-
-\- Derives terrain horizon profiles from NASA Lunar Orbiter Laser Altimeter (LOLA) elevation data.
-
-\- Classifies solar visibility by comparing solar geometry with the local terrain horizon.
-
-\- Estimates geometric Earth-disk visibility, including fully visible, partially visible, and not-visible states.
-
-\- Examines how different observer heights affect terrain-limited solar visibility.
-
-\- Compares candidate sites using time-series data and visibility windows.
-
-\- Presents the results through an interactive dashboard.
-
-
-
-\## Candidate Sites
-
-
+## Candidate Sites
 
 | Candidate site | Latitude | Longitude |
-
 |---|---:|---:|
-
 | Nobile Rim 1 | -85.4381° | +37.36667° |
-
 | Connecting Ridge | -89.4632° | -137.49° |
-
-
 
 The coordinates represent reference locations from the source dataset. They should not be interpreted as confirmed lander touchdown coordinates.
 
+## Analysis Results
 
-
-\## Analysis Results
-
-
-
-The current analysis covers \*\*14 November to 13 December 2026\*\*, using 1,441 observations at 30-minute intervals.
-
-
+The current analysis covers **14 November to 13 December 2026**, using 1,441 observations at 30-minute intervals.
 
 | Metric | Nobile Rim 1 | Connecting Ridge |
-
 |---|---:|---:|
-
 | Terrain-visible solar observations | 465 / 1,441 | 697 / 1,441 |
-
 | Solar visibility percentage | 32.27% | 48.37% |
-
 | Geometrically visible Earth-disk observations | 455 / 1,441 | 330 / 1,441 |
-
 | Earth-disk visibility percentage | 31.58% | 22.90% |
-
-
 
 These values describe the modeled observation window and the assumptions used by the analysis. They are not predictions of generated electrical power or operational communications availability.
 
+## Technology Stack
 
+**Scientific computing**
+- Python
+- SpiceyPy
+- NumPy
+- Rasterio
+- SciPy
+- PyProj
 
-\## Technology Stack
+**Frontend**
+- React
+- Vite
+- JavaScript
+- SVG-based visualizations
 
+**Scientific data**
+- NASA LOLA digital elevation products
+- NASA/JPL SPICE planetary ephemerides and lunar orientation kernels
 
-
-\*\*Scientific computing\*\*
-
-\- Python
-
-\- SpiceyPy
-
-\- NumPy
-
-\- Rasterio
-
-\- SciPy
-
-\- PyProj
-
-
-
-\*\*Frontend\*\*
-
-\- React
-
-\- Vite
-
-\- JavaScript
-
-\- SVG-based visualizations
-
-
-
-\*\*Scientific data\*\*
-
-\- NASA LOLA digital elevation products
-
-\- NASA/JPL SPICE planetary ephemerides and lunar orientation kernels
-
-
-
-\## Project Structure
-
-
+## Project Structure
 
 ```text
-
 LUNA-RESOLVE/
-
 ├── data/
-
 │   ├── metadata/
-
 │   ├── processed/
-
 │   └── raw/
-
 │       ├── lola/
-
 │       └── spice/
-
 ├── frontend/
-
 │   ├── public/
-
 │   │   └── data/
-
 │   └── src/
-
 ├── research/
-
-│   ├── terrain\_validation.md
-
-│   └── validation\_report.md
-
+│   ├── terrain_validation.md
+│   └── validation_report.md
 ├── science/
-
-│   ├── solar\_illumination.py
-
-│   ├── earth\_visibility.py
-
-│   ├── classify\_terrain\_illumination.py
-
-│   └── build\_mission\_environment.py
-
+│   ├── solar_illumination.py
+│   ├── earth_visibility.py
+│   ├── classify_terrain_illumination.py
+│   └── build_mission_environment.py
 ├── scripts/
-
-│   ├── calculate\_terrain\_horizon.py
-
-│   ├── calculate\_lander\_height\_horizons.py
-
-│   ├── run\_final\_validation.py
-
-│   ├── validate\_earth\_visibility.py
-
-│   └── validate\_lander\_height\_scenarios.py
-
+│   ├── calculate_terrain_horizon.py
+│   ├── calculate_lander_height_horizons.py
+│   ├── run_final_validation.py
+│   ├── validate_earth_visibility.py
+│   └── validate_lander_height_scenarios.py
 └── tests/
-
 ```
 
+## Run the Dashboard
 
+### Requirements
 
-\## Run the Dashboard
+- Node.js and npm
+- Python 3.11 or compatible
+- Git
 
+### Start the frontend
 
-
-\### Requirements
-
-
-
-\- Node.js and npm
-
-\- Python 3.11 or compatible
-
-\- Git
-
-
-
-\### Start the frontend
-
-
-
-```cmd
-
+```bash
 cd frontend
-
 npm install
-
 npm run dev
-
 ```
-
-
 
 Open the local URL printed by Vite in your browser.
 
+### Build the frontend
 
-
-\### Build the frontend
-
-
-
-```cmd
-
+```bash
 npm run build
-
 ```
 
+### Run lint checks
 
-
-\### Run lint checks
-
-
-
-```cmd
-
+```bash
 npm run lint
-
 ```
 
-
-
-\## Scientific Validation
-
-
+## Scientific Validation
 
 The project includes validation work covering:
 
-
-
-\- Solar and Earth time-series consistency across both sites.
-
-\- Earth-disk visibility classification consistency.
-
-\- Terrain slope comparison against the NASA LOLA slope product.
-
-\- LOLA point-cloud and elevation-raster consistency.
-
-\- Terrain-horizon radial-resolution convergence.
-
-\- Observer-height and terrain uncertainty sensitivity.
-
-\- Lunar reference-frame and ephemeris comparisons.
-
-
+- Solar and Earth time-series consistency across both sites.
+- Earth-disk visibility classification consistency.
+- Terrain slope comparison against the NASA LOLA slope product.
+- LOLA point-cloud and elevation-raster consistency.
+- Terrain-horizon radial-resolution convergence.
+- Observer-height and terrain uncertainty sensitivity.
+- Lunar reference-frame and ephemeris comparisons.
 
 Supporting documentation:
 
-
-
-\- `research/validation\_report.md`
-
-\- `research/terrain\_validation.md`
-
-
+- `research/validation_report.md`
+- `research/terrain_validation.md`
 
 Run the available validation scripts from the project root:
 
-
-
-```cmd
-
-python scripts\\run\_final\_validation.py
-
-python scripts\\validate\_earth\_visibility.py
-
-python scripts\\validate\_lander\_height\_scenarios.py
-
+```bash
+python scripts/run_final_validation.py
+python scripts/validate_earth_visibility.py
+python scripts/validate_lander_height_scenarios.py
 ```
-
-
 
 These checks establish internal consistency and document selected comparisons. They do not independently establish the absolute accuracy of every modeled quantity.
 
+## Data Sources
 
-
-\## Data Sources
-
-
-
-\- \[NASA Lunar Orbiter Laser Altimeter (LOLA) data](https://pgda.gsfc.nasa.gov/products/78)
-
-\- \[NASA QuickMap](https://quickmap.lroc.asu.edu/)
-
-\- \[NASA Moon Trek](https://trek.nasa.gov/moon/)
-
-\- \[NASA/JPL Horizons](https://ssd.jpl.nasa.gov/horizons/)
-
-\- \[Canadian Space Agency - Moon Exploration](https://www.asc-csa.gc.ca/eng/astronomy/moon-exploration/)
-
-
+- [NASA Lunar Orbiter Laser Altimeter (LOLA) data](https://pgda.gsfc.nasa.gov/products/78)
+- [NASA QuickMap](https://quickmap.lroc.asu.edu/)
+- [NASA Moon Trek](https://trek.nasa.gov/moon/)
+- [NASA/JPL Horizons](https://ssd.jpl.nasa.gov/horizons/)
+- [Canadian Space Agency - Moon Exploration](https://www.asc-csa.gc.ca/eng/astronomy/moon-exploration/)
 
 The raw terrain products and SPICE kernels are not necessarily included in the repository. Consult the project data metadata and research documentation for the inputs and provenance required to reproduce the scientific processing.
 
-
-
-\## Scientific Assumptions and Limitations
-
-
+## Scientific Assumptions and Limitations
 
 LUNA-RESOLVE is a mission-environment analysis tool, not a landing-site certification system.
 
-
-
-\- Geometric Earth-disk visibility does not establish radio-frequency link availability or communications performance.
-
-\- Solar visibility does not directly establish usable power generation, battery performance, or thermal safety.
-
-\- Terrain horizons depend on DEM resolution, interpolation, observer position, and observer height.
-
-\- Earth visibility uses a geometric disk model and terrain-horizon approximation; it is not a full communications or terrain-ray-tracing model.
-
-\- Candidate reference coordinates are not verified touchdown locations.
-
-\- The modeled time window and sampling interval limit the conclusions that can be drawn.
-
-\- Terrain, ephemeris, frame, and observer uncertainties must be considered when interpreting results.
-
-
+- Geometric Earth-disk visibility does not establish radio-frequency link availability or communications performance.
+- Solar visibility does not directly establish usable power generation, battery performance, or thermal safety.
+- Terrain horizons depend on DEM resolution, interpolation, observer position, and observer height.
+- Earth visibility uses a geometric disk model and terrain-horizon approximation; it is not a full communications or terrain-ray-tracing model.
+- Candidate reference coordinates are not verified touchdown locations.
+- The modeled time window and sampling interval limit the conclusions that can be drawn.
+- Terrain, ephemeris, frame, and observer uncertainties must be considered when interpreting results.
 
 The project does not declare either candidate site a confirmed landing location.
 
+## Future Work
 
+- Expand terrain analysis to additional lunar south-pole candidate sites.
+- Improve near-field terrain and observer-footprint modeling.
+- Extend uncertainty analysis into formal horizon-angle bounds.
+- Add detailed communications geometry and link-budget analysis.
+- Incorporate power-system and thermal constraints.
+- Improve independent validation against additional lunar reference datasets.
 
-\## Future Work
+## Contributors
 
+**Akshata Sital Saptasagar**  
+Scientific computing, SPICE-based geometry, terrain and visibility analysis, validation, and project integration.
 
+**Pradeep Sital Saptasagar**  
+LOLA terrain research, frontend development, dashboard implementation, and project integration.
 
-\- Expand terrain analysis to additional lunar south-pole candidate sites.
-
-\- Improve near-field terrain and observer-footprint modeling.
-
-\- Extend uncertainty analysis into formal horizon-angle bounds.
-
-\- Add detailed communications geometry and link-budget analysis.
-
-\- Incorporate power-system and thermal constraints.
-
-\- Improve independent validation against additional lunar reference datasets.
-
-
-
-\## Project Status
-
-
+## Project Status
 
 Research and prototype implementation. The dashboard and current scientific outputs support comparative exploration of lunar south-pole illumination and geometric Earth visibility.
