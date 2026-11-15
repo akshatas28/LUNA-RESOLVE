@@ -2,9 +2,11 @@
 
 **Lunar South Pole Mission Environment Analysis**
 
+**Live Dashboard:** https://luna-resolve.vercel.app
+
 LUNA-RESOLVE is a terrain-aware analysis platform for evaluating solar illumination and geometric Earth visibility at candidate lunar south-pole exploration sites. It combines NASA lunar elevation data with SPICE-based celestial geometry to examine how local terrain and observer height affect the mission environment over a 30-day observation window.
 
-The project currently analyzes two candidate locations: **Nobile Rim 1** and **Connecting Ridge**.
+The project currently analyzes two candidate locations: **Nobile Rim 1** and **Connecting Ridge**. Its interactive dashboard presents mission-environment observations, visibility timelines, site comparisons, and scientific assumptions.
 
 ## The Problem
 
@@ -20,7 +22,26 @@ Mission planning therefore needs more than a simple latitude-longitude or daylig
 - Estimates geometric Earth-disk visibility, including fully visible, partially visible, and not-visible states.
 - Examines how different observer heights affect terrain-limited solar visibility.
 - Compares candidate sites using time-series data and visibility windows.
-- Presents the results through an interactive dashboard.
+- Provides date-based inspection of individual mission observations.
+- Presents results through an interactive dashboard with time-series charts, visibility timelines, and site comparisons.
+
+## Live Dashboard
+
+The production dashboard is available at:
+
+**https://luna-resolve.vercel.app**
+
+The dashboard includes:
+
+- **Mission snapshot:** Solar visibility, Earth-disk visibility, and solar elevation metrics.
+- **Time-series analysis:** Solar and Earth elevation charts with observation-level inspection.
+- **Visibility timeline:** Date-based visibility analysis using 30-minute observation bins.
+- **Mission observation table:** UTC timestamps, solar elevation, solar azimuth, effective terrain horizon, and visibility classifications.
+- **Site comparison:** Side-by-side comparison of Nobile Rim 1 and Connecting Ridge.
+- **Visibility windows:** Longest continuous windows, total visible duration, and first and last visible observation bins.
+- **Scientific basis:** Data provenance, modeling assumptions, and interpretation boundaries.
+
+The dashboard uses precomputed scientific outputs served as static data files. The Python science-processing workflow is separate from the deployed frontend.
 
 ## Candidate Sites
 
@@ -41,6 +62,7 @@ The current analysis covers **14 November to 13 December 2026**, using 1,441 obs
 | Solar visibility percentage | 32.27% | 48.37% |
 | Geometrically visible Earth-disk observations | 455 / 1,441 | 330 / 1,441 |
 | Earth-disk visibility percentage | 31.58% | 22.90% |
+| Fully visible Earth-disk observations | 337 | 126 |
 
 These values describe the modeled observation window and the assumptions used by the analysis. They are not predictions of generated electrical power or operational communications availability.
 
@@ -59,6 +81,10 @@ These values describe the modeled observation window and the assumptions used by
 - Vite
 - JavaScript
 - SVG-based visualizations
+
+**Deployment**
+- Vercel
+- GitHub
 
 **Scientific data**
 - NASA LOLA digital elevation products
@@ -95,7 +121,7 @@ LUNA-RESOLVE/
 └── tests/
 ```
 
-## Run the Dashboard
+## Run the Dashboard Locally
 
 ### Requirements
 
@@ -124,6 +150,18 @@ npm run build
 ```bash
 npm run lint
 ```
+
+## Deployment
+
+The frontend is deployed to Vercel and connected to the GitHub repository.
+
+- **Live URL:** https://luna-resolve.vercel.app
+- **Repository:** https://github.com/akshatas28/LUNA-RESOLVE
+- **Framework:** Vite
+- **Deployment target:** Production
+- **Frontend root directory:** `frontend`
+
+The dashboard is deployed as a standalone frontend. Scientific processing is performed separately, and the resulting dashboard data files are served from the frontend's public data directory.
 
 ## Scientific Validation
 
@@ -195,4 +233,4 @@ LOLA terrain research, frontend development, dashboard implementation, and proje
 
 ## Project Status
 
-Research and prototype implementation. The dashboard and current scientific outputs support comparative exploration of lunar south-pole illumination and geometric Earth visibility.
+Research and prototype implementation with a publicly deployed interactive dashboard. Current scientific outputs support comparative exploration of lunar south-pole illumination and geometric Earth visibility. Further modeling, uncertainty analysis, and independent verification are required before operational mission-planning use.
